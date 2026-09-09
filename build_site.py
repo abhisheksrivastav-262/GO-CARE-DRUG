@@ -9,7 +9,7 @@ ADDRESS = "BHOOTHNATH SANIDEV MANDIR"
 WA_LINK = f"https://wa.me/{PHONE_WA}?text="
 
 LOGO_SVG = """<a class="brand" href="index.html" aria-label="GO CARE DRUG home">
-<img class="brand-logo" src="assets/logo.jpg" alt="GO CARE DRUG official logo" fetchpriority="high">
+<img class="brand-logo" data-cms="logo" src="assets/logo.jpg" alt="GO CARE DRUG official logo" fetchpriority="high">
 <span class="brand-text"><strong>GO CARE DRUG</strong><small>CARE&nbsp;|&nbsp;HEALTH&nbsp;|&nbsp;TRUST</small></span></a>"""
 
 NAV = [
@@ -46,25 +46,29 @@ def header(active):
 
 def footer():
     return f"""<footer class="footer"><div class="wrap footer-grid">
-<div class="f-brand">{LOGO_SVG}<p>GO CARE DRUG<br><span>CARE | HEALTH | TRUST</span></p><p class="f-desc">Dependable home medical and healthcare support designed around comfort, convenience and professional care.</p>
+<div class="f-brand">{LOGO_SVG}<p>GO CARE DRUG<br><span>CARE | HEALTH | TRUST</span></p><p class="f-desc" data-cms="footer_desc">Dependable home medical and healthcare support designed around comfort, convenience and professional care.</p>
 <div class="f-actions"><a class="btn btn-call" href="tel:{PHONE_TEL}">Call Now</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener">WhatsApp</a></div>{SOCIAL_BTNS}</div>
 <div><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
 <div><h4>Services</h4><ul><li><a href="nursing.html">Nursing Services</a></li><li><a href="medical.html">Medical Services</a></li><li><a href="pathologist.html">Pathologist Services</a></li><li><a href="compounder.html">Compounder Services</a></li><li><a href="physiotherapy.html">Physiotherapy Services</a></li><li><a href="nurse.html">Nurse Services</a></li><li><a href="ambulance.html">Ambulance Services</a></li></ul></div>
 <div><h4>Contact</h4><ul class="f-contact"><li><a href="tel:{PHONE_TEL}">{PHONE}</a></li><li>{ADDRESS}</li><li><a href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener">WhatsApp: {PHONE}</a></li><li class="gstin">GSTIN: {GSTIN}</li></ul></div>
-</div><div class="f-bottom"><div class="wrap">© GO CARE DRUG. All Rights Reserved. <span class="f-gst">GSTIN: {GSTIN}</span></div></div></footer>
+</div><div class="f-bottom"><div class="wrap"><span data-cms="footer_copyright">© GO CARE DRUG. All Rights Reserved.</span> <span class="f-gst">GSTIN: {GSTIN}</span></div></div></footer>
 <div class="float-btns"><a class="float-call" href="tel:{PHONE_TEL}" aria-label="Call GO CARE DRUG">📞<span>Call</span></a><a class="float-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener" aria-label="WhatsApp GO CARE DRUG"><svg viewBox="0 0 32 32" width="26" height="26" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 2 6.5L4 29l7.7-2c1.8 1 3.9 1.5 6 1.5h.3c6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22.2c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.5 1.2 1.2-4.4-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8C5 9.4 9.9 5 16 5s11 4.9 11 11-4.9 9.2-11 9.2zm6-6.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.3-.7.1-.3-.2-1.4-.5-2.6-1.6-.9-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6L13.3 9c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.5 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg><span>WhatsApp</span></a></div>"""
 
 def page(filename,title,desc,body,hero_kicker="",hero_title="",hero_sub=""):
     hero=""
     if hero_title:
-        hero=f"""<section class="page-hero"><div class="wrap"><p class="eyebrow">{hero_kicker}</p><h1>{hero_title}</h1>{f'<p class="lead">{hero_sub}</p>' if hero_sub else ''}</div></section>"""
+        h1k = {'about.html':'about_heading','contact.html':'contact_heading'}.get(filename,'')
+        ldk = {'about.html':'about_sub','contact.html':'contact_sub'}.get(filename,'')
+        h1a = f' data-cms="{h1k}"' if h1k else ''
+        lda = f' data-cms="{ldk}"' if ldk else ''
+        hero=f"""<section class="page-hero"><div class="wrap"><p class="eyebrow">{hero_kicker}</p><h1{h1a}>{hero_title}</h1>{f'<p class="lead"{lda}>{hero_sub}</p>' if hero_sub else ''}</div></section>"""
     html=f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} | GO CARE DRUG</title><meta name="description" content="{desc}">
 <meta property="og:title" content="{title} | GO CARE DRUG"><meta property="og:description" content="{desc}"><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/nursing-welcome.jpg"></head>
-<body>{header(filename)}<main>{hero}{body}</main>{footer()}<script src="script.js"></script></body></html>"""
+<body>{header(filename)}<main>{hero}{body}</main>{footer()}<script src="script.js"></script><script src="/cms.js" defer></script></body></html>"""
     open(os.path.join(BASE,filename),"w").write(html)
 
 SERVICE_CARDS = [
@@ -82,19 +86,19 @@ def service_grid():
     for href,t,d,img,alt,icon in SERVICE_CARDS:
         cards.append(f"""<article class="card reveal"><div class="card-media"><img loading="lazy" src="{img}" alt="{alt}"></div>
 <div class="card-body"><div class="card-icon">{icon}</div><h3>{t}</h3><p>{d}</p><a class="btn btn-outline" href="{href}">Learn More →</a></div></article>""")
-    return '<div class="grid grid-4">'+"".join(cards)+"</div>"
+    return '<div class="grid grid-4" data-services-grid>'+"".join(cards)+"</div>"
 
 # ---------- HOME ----------
 home_body = f"""<section class="hero"><div class="wrap hero-grid">
-<div class="hero-copy"><p class="eyebrow">TRUSTED HOME HEALTHCARE SERVICES</p>
-<h1>Professional Healthcare Services,<br><span>Delivered With Care</span></h1>
-<p class="lead">GO CARE DRUG provides dependable home medical and healthcare support designed around comfort, convenience and professional care.</p>
-<div class="hero-ctas"><a class="btn btn-primary" href="services.html">Book a Service</a><a class="btn btn-dark" href="tel:{PHONE_TEL}">Call {PHONE}</a></div>
+<div class="hero-copy"><p class="eyebrow" data-cms="hero_kicker">TRUSTED HOME HEALTHCARE SERVICES</p>
+<h1 data-cms="hero_title">Professional Healthcare Services,<br><span>Delivered With Care</span></h1>
+<p class="lead" data-cms="hero_sub">GO CARE DRUG provides dependable home medical and healthcare support designed around comfort, convenience and professional care.</p>
+<div class="hero-ctas"><a class="btn btn-primary" data-cms="hero_primary_text" data-cms-link="hero_primary_link" href="services.html">Book a Service</a><a class="btn btn-dark" data-cms="hero_secondary_text" href="tel:{PHONE_TEL}">Call {PHONE}</a></div>
 <div class="trust-row"><span>✓ Professional Care</span><span>✓ Home Healthcare Support</span><span>✓ Convenient Services</span><span>✓ Trusted Assistance</span></div></div>
-<div class="hero-media"><img src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services in Patna" fetchpriority="high"><p class="media-cap">Original GO CARE DRUG care artwork · {ADDRESS}</p></div>
+<div class="hero-media"><img data-cms="hero_image" src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services in Patna" fetchpriority="high"><p class="media-cap">Original GO CARE DRUG care artwork · {ADDRESS}</p></div>
 </div></section>
 <section class="strip"><div class="wrap strip-grid"><div><strong>Home Medical & Healthcare Services</strong><span>One contact for nursing, medical, pathology, physiotherapy and ambulance.</span></div><div class="strip-ctas"><a class="btn btn-primary" href="contact.html">Send Enquiry</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20want%20to%20book%20a%20service." target="_blank" rel="noopener">WhatsApp Us</a></div></div></section>
-<section class="section"><div class="wrap"><p class="eyebrow center">OUR SERVICES</p><h2 class="center">Complete Healthcare Support At Your Doorstep</h2><p class="sub center">Tap any service to open its dedicated page.</p>{service_grid()}</div></section>
+<section class="section"><div class="wrap"><p class="eyebrow center">OUR SERVICES</p><h2 class="center" data-cms="services_heading">Complete Healthcare Support At Your Doorstep</h2><p class="sub center" data-cms="services_sub">Tap any service to open its dedicated page.</p>{service_grid()}</div></section>
 <section class="section alt"><div class="wrap"><p class="eyebrow">WHY CHOOSE US</p><h2>Why Choose GO CARE DRUG?</h2>
 <div class="grid grid-3">
 <div class="feat reveal"><div class="f-ico">🏥</div><h3>Professional Healthcare Support</h3><p>Organised, care-focused assistance for everyday medical needs at home.</p></div>
@@ -104,8 +108,8 @@ home_body = f"""<section class="hero"><div class="wrap hero-grid">
 <div class="feat reveal"><div class="f-ico">👥</div><h3>Experienced Service Support</h3><p>A coordinated team for nursing, medical, pathology, physio and more.</p></div>
 <div class="feat reveal"><div class="f-ico">📞</div><h3>Easy Contact & Booking</h3><p>Call or WhatsApp <a href="tel:{PHONE_TEL}">{PHONE}</a> to request any service.</p></div>
 </div>
-<div class="split"><div class="split-media"><img loading="lazy" src="assets/compounder.jpg" alt="Compounder providing home care support for elderly patients"></div>
-<div><h3>One trusted team for your family's everyday care</h3><p>From sample collection to attendant support, every request is handled with hygiene, punctuality and compassion.</p><ul class="ticks"><li>Home sample collection assistance</li><li>Nursing, caretaker & compounder support</li><li>Physiotherapy at home</li><li>Ambulance service coordination</li></ul><a class="btn btn-primary" href="about.html">More About Us</a></div></div>
+<div class="split"><div class="split-media"><img data-cms="home_about_image" loading="lazy" src="assets/compounder.jpg" alt="Compounder providing home care support for elderly patients"></div>
+<div><h3 data-cms="home_about_heading">One trusted team for your family's everyday care</h3><p data-cms="home_about_text">From sample collection to attendant support, every request is handled with hygiene, punctuality and compassion.</p><ul class="ticks"><li>Home sample collection assistance</li><li>Nursing, caretaker & compounder support</li><li>Physiotherapy at home</li><li>Ambulance service coordination</li></ul><a class="btn btn-primary" href="about.html">More About Us</a></div></div>
 </div></section>
 <section class="section"><div class="wrap"><p class="eyebrow center">PROCESS</p><h2 class="center">How Our Healthcare Service Works</h2>
 <div class="steps"><div class="step reveal"><span>01</span><h3>Contact Us</h3><p>Call or WhatsApp {PHONE}.</p></div><div class="step reveal"><span>02</span><h3>Tell Us Your Requirement</h3><p>Share the service and patient needs.</p></div><div class="step reveal"><span>03</span><h3>Get Service Assistance</h3><p>We confirm and schedule your visit.</p></div><div class="step reveal"><span>04</span><h3>Receive Professional Support</h3><p>Care delivered at your home.</p></div></div></div></section>
@@ -117,16 +121,16 @@ page("index.html","Professional Home Healthcare Services","GO CARE DRUG offers h
 
 # ---------- ABOUT ----------
 about_body = """<section class="section"><div class="wrap split">
-<div><p class="eyebrow">WHO WE ARE</p><h2>Care, Health & Trust</h2>
-<p>GO CARE DRUG is a home medical and healthcare service provider focused on delivering convenient and dependable medical support to patients and families.</p>
+<div><p class="eyebrow" data-cms="about_kicker">WHO WE ARE</p><h2 data-cms="about_heading">Care, Health & Trust</h2>
+<p data-cms="about_intro">GO CARE DRUG is a home medical and healthcare service provider focused on delivering convenient and dependable medical support to patients and families.</p>
 <p>Our work is simple: bring organised healthcare assistance to your doorstep — with clear communication, respectful care and attention to hygiene and comfort.</p>
 <ul class="ticks"><li>Home-first service model</li><li>Single point of contact for 7 services</li><li>Care-focused, family-friendly approach</li></ul></div>
-<div class="split-media"><img src="assets/nursing-welcome.jpg" alt="GO CARE DRUG nurse welcoming patients"></div></div></section>
+<div class="split-media"><img data-cms="about_image" src="assets/nursing-welcome.jpg" alt="GO CARE DRUG nurse welcoming patients"></div></div></section>
 <section class="section alt"><div class="wrap"><div class="grid grid-3">
 <div class="feat"><div class="f-ico">🎯</div><h3>Our Approach</h3><p>Listen first, then arrange the right support — nursing, medical, pathology, physiotherapy or ambulance — as per your requirement.</p></div>
 <div class="feat"><div class="f-ico">🛡️</div><h3>Our Commitment</h3><p>Safe handling, on-time visits, transparent coordination and courteous behaviour on every home visit.</p></div>
-<div class="feat"><div class="f-ico">⭐</div><h3>Why Patients Choose Us</h3><p>One trusted team, easy booking on call or WhatsApp, and support planned around the patient's daily routine.</p></div>
-</div><div class="split reverse"><div class="split-media"><img loading="lazy" src="assets/ambulance.jpg" alt="GO CARE DRUG ambulance for safe patient transfers"></div>
+<div class="feat"><div class="f-ico">⭐</div><h3>Why Patients Choose Us</h3><p data-cms="about_why">One trusted team, easy booking on call or WhatsApp, and support planned around the patient's daily routine.</p></div>
+</div><div class="mv-grid"><div class="feat reveal"><div class="f-ico">🎯</div><h3>Our Mission</h3><p data-cms="about_mission">To bring organised, compassionate healthcare assistance to every doorstep.</p></div><div class="feat reveal"><div class="f-ico">🔭</div><h3>Our Vision</h3><p data-cms="about_vision">A future where quality home healthcare is convenient and dependable for every family.</p></div></div><div class="split reverse"><div class="split-media"><img loading="lazy" src="assets/ambulance.jpg" alt="GO CARE DRUG ambulance for safe patient transfers"></div>
 <div><h3>Everything your family needs, at home</h3><p>Our service directory covers nursing care, caretaker support, sample collection, physiotherapy, and ambulance coordination.</p><a class="btn btn-primary" href="services.html">Explore Services</a></div></div></div></section>"""
 page("about.html","About Us","Learn about GO CARE DRUG — dependable home medical and healthcare support built on care, health and trust.",about_body,"ABOUT GO CARE DRUG","Care, Health & Trust","A healthcare service provider focused on convenient, dependable medical support at home.")
 
@@ -139,10 +143,10 @@ page("services.html","All Services","Browse all 7 GO CARE DRUG home healthcare s
 def service_page(fn,title,kicker,img,alt,intro,bullets,cta_label,extra=""):
     bullets_html="".join(f"<li>{b}</li>" for b in bullets)
     body=f"""<section class="section"><div class="wrap split">
-<div class="poster"><img src="{img}" alt="{alt}"></div>
-<div><p class="eyebrow">GO CARE DRUG · HOME SERVICE</p><h2 style="margin-top:0">{title} — At Home</h2><p>{intro}</p>
-<ul class="ticks">{bullets_html}</ul>
-<div class="cta-btns"><a class="btn btn-primary" href="contact.html?service={title}">{cta_label}</a><a class="btn btn-dark" href="tel:{PHONE_TEL}">Call: {PHONE}</a></div>
+<div class="poster"><img data-service-field="image" src="{img}" alt="{alt}"></div>
+<div><p class="eyebrow">GO CARE DRUG · HOME SERVICE</p><h2 style="margin-top:0" data-service-field="name" data-suffix=" — At Home">{title} — At Home</h2><p data-service-field="intro">{intro}</p>
+<ul class="ticks" data-service-field="benefits">{bullets_html}</ul>
+<div class="cta-btns"><a class="btn btn-primary" data-service-field="cta" href="contact.html?service={title}">{cta_label}</a><a class="btn btn-dark" href="tel:{PHONE_TEL}">Call: {PHONE}</a></div>
 <p class="note">Prefer WhatsApp? <a href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20{title.replace(' ','%20')}." target="_blank" rel="noopener">Chat with us here</a>.</p></div></div></section>
 <section class="section alt"><div class="wrap"><h2>How to book {title.lower()}</h2><div class="steps">
 <div class="step"><span>01</span><h3>Contact us</h3><p>Call or WhatsApp {PHONE}.</p></div>
@@ -205,3 +209,13 @@ contact_body = f"""<section class="section"><div class="wrap">
 </div></section>"""
 page("contact.html","Contact Us","Contact GO CARE DRUG — call or WhatsApp "+PHONE+", visit "+ADDRESS+", or send an enquiry.",contact_body,"GET IN TOUCH","Contact GO CARE DRUG","Call, WhatsApp or visit us — we respond quickly.")
 print("pages built OK")
+
+detail_shell = f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Details | GO CARE DRUG</title><meta name="description" content="GO CARE DRUG home healthcare service details.">
+<meta property="og:title" content="Service Details | GO CARE DRUG"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/nursing-welcome.jpg"></head>
+<body>{header('services.html')}<main><section class="page-hero"><div class="wrap"><p class="eyebrow">GO CARE DRUG SERVICES</p><h1>Service Details</h1><p class="lead">Professional home healthcare support, delivered with care.</p></div></section><div class="wrap" style="padding:10px 20px 30px" id="detailBox"><p>Loading service details…</p></div></main>{footer()}<script src="script.js"></script><script src="/cms.js" defer></script></body></html>"""
+open(os.path.join(BASE,"service-detail.html"),"w").write(detail_shell)
+print("service-detail.html written")

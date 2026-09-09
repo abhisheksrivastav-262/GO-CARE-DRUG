@@ -1,0 +1,19 @@
+{
+  "name": "go-care-drug-cms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GO CARE DRUG website + CMS admin panel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^2.3.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.10.0"
+  }
+}

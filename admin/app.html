@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | GO CARE DRUG</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/admin.css">
+<link rel="icon" href="/assets/logo.jpg">
+</head>
+<body>
+<div class="admin">
+  <aside class="sidebar" id="sidebar">
+    <div class="side-brand">
+      <img src="/assets/logo.jpg" alt="GO CARE DRUG logo">
+      <div><strong>GO CARE DRUG</strong><small>ADMIN&nbsp;PANEL</small></div>
+    </div>
+    <nav class="side-nav" id="sideNav" aria-label="Admin navigation"></nav>
+    <div class="side-foot">GO CARE DRUG CMS · v1.0</div>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="hamb" id="hamb" aria-label="Open menu">☰</button>
+      <h1 id="pageTitle">Dashboard</h1>
+      <div class="sp"></div>
+      <a class="btn btn-o btn-sm" id="viewSiteBtn" href="/" target="_blank" rel="noopener">👁 View Website</a>
+      <div class="admin-chip"><span class="avatar" id="avatarTx">A</span><span class="uname" id="adminName">Admin</span></div>
+      <button class="btn btn-danger btn-sm" id="logoutBtn">Logout</button>
+    </div>
+    <main class="view" id="view"></main>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+<div id="toasts"></div>
+<div class="modal-wrap" id="modalWrap"><div class="modal" id="modalBox"></div></div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>
