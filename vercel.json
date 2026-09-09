@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "$comment": "Fallback ONLY: use when the public site stays on Vercel but the CMS/backend runs on Render (or another Node host). Primary recommendation is serving everything from the Node host and pointing DNS there instead.",
+  "rewrites": [
+    { "source": "/admin/:path*", "destination": "https://REPLACE-WITH-RENDER-APP.onrender.com/admin/:path*" },
+    { "source": "/api/:path*", "destination": "https://REPLACE-WITH-RENDER-APP.onrender.com/api/:path*" }
+  ]
+}

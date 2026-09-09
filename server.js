@@ -6,29 +6,45 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { db, get, set, log, now, seed } = require('./db');
+const SQLiteStore = require('./session-store');
 
 const PORT = process.env.PORT || 8000;
+const IS_PROD = process.env.NODE_ENV === 'production';
+if (IS_PROD && !process.env.SESSION_SECRET) {
+  console.error('FATAL: SESSION_SECRET env var is required when NODE_ENV=production.');
+  process.exit(1);
+}
 const app = express();
 app.disable('x-powered-by');
+if (IS_PROD) app.set('trust proxy', 1);
 app.use(express.json({ limit: '2mb' }));
 
 app.use(session({
   name: 'gocare_admin',
-  secret: process.env.SESSION_SECRET || 'gocare-' + require('crypto').randomBytes(16).toString('hex'),
+  secret: process.env.SESSION_SECRET || 'gocare-dev-only-' + require('crypto').randomBytes(16).toString('hex'),
   resave: false,
   saveUninitialized: false,
-  cookie: { httpOnly: true, sameSite: 'lax', maxAge: 24 * 60 * 60 * 1000 }
+  store: new SQLiteStore(db),
+  cookie: { httpOnly: true, sameSite: 'lax', secure: IS_PROD, maxAge: 24 * 60 * 60 * 1000 }
 }));
 
+// Health check (hosting monitors / deploy checks).
+app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+
 // ---- never expose server internals ----
-const BLOCKED = [/^\/server\.js/, /^\/db\.js/, /^\/build_site\.py/, /\.py$/, /^\/package.*\.json/, /^\/node_modules\//, /^\/data\//, /^\/\.git\//, /\.db(\b|$)/];
+const BLOCKED = [/^\/server\.js/, /^\/db\.js/, /^\/session-store\.js/, /^\/build_site\.py/, /\.py$/, /^\/package.*\.json/, /^\/node_modules\//, /^\/data\//, /^\/\.git\//, /\.db(\b|$)/];
 app.use((req, res, next) => {
   if (BLOCKED.some(rx => rx.test(req.path))) return res.status(404).send('Not found');
   next();
 });
 
-// ---- uploads ----
-const UP_DIR = path.join(__dirname, 'uploads');
+// ---- uploads (persistent disk path configurable via UPLOAD_DIR) ----
+const UP_DIR = process.env.UPLOAD_DIR || path.join(__dirname, 'uploads');
+// Absolute disk path for a media filepath (respects UPLOAD_DIR override).
+function absMediaPath(fp) {
+  if (!fp.startsWith('uploads/')) return null;
+  return path.join(UP_DIR, path.basename(fp));
+}
 if (!fs.existsSync(UP_DIR)) fs.mkdirSync(UP_DIR, { recursive: true });
 const storage = multer.diskStorage({
   destination: UP_DIR,
@@ -269,7 +285,7 @@ api.post('/media/:id/replace', upload.single('image'), (req, res) => {
   const cur = db.prepare('SELECT * FROM media WHERE id=?').get(req.params.id);
   if (!cur) return res.status(404).json({ error: 'Image not found.' });
   const fp = 'uploads/' + req.file.filename;
-  if (cur.filepath.startsWith('uploads/')) { try { fs.unlinkSync(path.join(__dirname, cur.filepath)); } catch { } }
+  const __old = absMediaPath(cur.filepath); if (__old) { try { fs.unlinkSync(__old); } catch { } }
   db.prepare('UPDATE media SET filename=?,filepath=?,mimetype=?,size=? WHERE id=?')
     .run(req.file.originalname, fp, req.file.mimetype, req.file.size, cur.id);
   // keep references working: point services/settings at the new file
@@ -299,7 +315,7 @@ api.delete('/media/:id', (req, res) => {  const a = currentAdmin(req);
   if (!cur) return res.status(404).json({ error: 'Image not found.' });
   const used = mediaUsage(cur.filepath);
   if (used.length && req.query.force !== '1') return res.status(409).json({ error: 'Image is in use.', usedIn: used });
-  if (cur.filepath.startsWith('uploads/')) { try { fs.unlinkSync(path.join(__dirname, cur.filepath)); } catch { } }
+  const __old = absMediaPath(cur.filepath); if (__old) { try { fs.unlinkSync(__old); } catch { } }
   db.prepare('DELETE FROM media WHERE id=?').run(cur.id);
   log(a, 'Image deleted', cur.filename, used.join('; '));
   res.json({ ok: true });
@@ -418,6 +434,17 @@ api.put('/profile/password', (req, res) => {
   db.prepare('UPDATE admins SET password_hash=? WHERE id=?').run(bcrypt.hashSync(next, 10), a.id);
   log(a, 'Admin password changed', a.email, '');
   res.json({ ok: true });
+});
+
+// ---- DB backup download (admin-only; for migration/offsite backup) ----
+api.get('/backup/download', (req, res) => {
+  const a = currentAdmin(req);
+  const dbPath = process.env.DATA_DIR
+    ? path.join(process.env.DATA_DIR, 'gocare.db')
+    : path.join(__dirname, 'data', 'gocare.db');
+  const stamp = new Date().toISOString().slice(0, 10);
+  log(a, 'Database backup downloaded', 'gocare.db', '');
+  res.download(dbPath, `gocare-backup-${stamp}.db`);
 });
 
 // ---- logs ----

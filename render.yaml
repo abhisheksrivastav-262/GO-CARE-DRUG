@@ -1,0 +1,28 @@
+# Render blueprint — GO CARE DRUG (Express + SQLite on persistent disk)
+# Deploy: connect repo in Render Dashboard → New → Blueprint → select render.yaml.
+# Then set ADMIN_PASSWORD (and confirm SESSION_SECRET) under Environment.
+services:
+  - type: web
+    name: gocare-drug
+    runtime: node
+    plan: starter # persistent disks require a paid instance (SQLite + uploads live here)
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    disk:
+      name: gocare-data
+      mountPath: /var/gocare-data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/gocare-data/db
+      - key: UPLOAD_DIR
+        value: /var/gocare-data/uploads
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@gocaredrug.in
+      - key: ADMIN_PASSWORD
+        sync: false # set manually in dashboard on first deploy
