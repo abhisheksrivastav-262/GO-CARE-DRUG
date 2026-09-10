@@ -14,7 +14,7 @@ LOGO_SVG = """<a class="brand" href="index.html" aria-label="GO CARE DRUG home">
 
 NAV = [
  ("index.html","Home"),("about.html","About"),("services.html","Services"),
- ("nursing.html","Nursing"),("medical.html","Medical"),("pathologist.html","Pathologist"),
+  ("nursing.html","Nursing"),("medical.html","Doctors"),("pathologist.html","Pathologist"),
  ("physiotherapy.html","Physiotherapy"),("ambulance.html","Ambulance"),
  ("contact.html","Contact"),
 ]
@@ -49,7 +49,7 @@ def footer():
 <div class="f-brand">{LOGO_SVG}<p>GO CARE DRUG<br><span>CARE | HEALTH | TRUST</span></p><p class="f-desc" data-cms="footer_desc">Dependable home medical and healthcare support designed around comfort, convenience and professional care.</p>
 <div class="f-actions"><a class="btn btn-call" href="tel:{PHONE_TEL}">Call Now</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener">WhatsApp</a></div>{SOCIAL_BTNS}</div>
 <div><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-<div><h4>Services</h4><ul><li><a href="nursing.html">Nursing Services</a></li><li><a href="medical.html">Medical Services</a></li><li><a href="pathologist.html">Pathologist Services</a></li><li><a href="compounder.html">Compounder Services</a></li><li><a href="physiotherapy.html">Physiotherapy Services</a></li><li><a href="nurse.html">Nurse Services</a></li><li><a href="ambulance.html">Ambulance Services</a></li></ul></div>
+<div><h4>Services</h4><ul><li><a href="nursing.html">Nursing Services</a></li><li><a href="medical.html">Doctors Appointment</a></li><li><a href="pathologist.html">Pathologist Services</a></li><li><a href="compounder.html">Compounder Services</a></li><li><a href="physiotherapy.html">Physiotherapy Services</a></li><li><a href="nurse.html">Nurse Services</a></li><li><a href="ambulance.html">Ambulance Services</a></li></ul></div>
 <div><h4>Contact</h4><ul class="f-contact"><li><a href="tel:{PHONE_TEL}">{PHONE}</a></li><li>{ADDRESS}</li><li><a href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener">WhatsApp: {PHONE}</a></li><li class="gstin">GSTIN: {GSTIN}</li></ul></div>
 </div><div class="f-bottom"><div class="wrap"><span data-cms="footer_copyright">© GO CARE DRUG. All Rights Reserved.</span> <span class="f-gst">GSTIN: {GSTIN}</span> <span class="f-sep" aria-hidden="true">·</span> <a class="f-admin" href="/admin/">Admin Login</a></div></div></footer>
 <div class="float-btns"><a class="float-call" href="tel:{PHONE_TEL}" aria-label="Call GO CARE DRUG">📞<span>Call</span></a><a class="float-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener" aria-label="WhatsApp GO CARE DRUG"><svg viewBox="0 0 32 32" width="26" height="26" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 2 6.5L4 29l7.7-2c1.8 1 3.9 1.5 6 1.5h.3c6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22.2c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.5 1.2 1.2-4.4-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8C5 9.4 9.9 5 16 5s11 4.9 11 11-4.9 9.2-11 9.2zm6-6.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.3-.7.1-.3-.2-1.4-.5-2.6-1.6-.9-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6L13.3 9c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.5 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg><span>WhatsApp</span></a></div>"""
@@ -73,7 +73,7 @@ def page(filename,title,desc,body,hero_kicker="",hero_title="",hero_sub=""):
 
 SERVICE_CARDS = [
  ("nursing.html","Nursing Services","Home nursing support, patient assistance and routine care at home.","assets/nursing-welcome.jpg","Nurse welcoming patients to GO CARE DRUG home healthcare","🩺"),
- ("medical.html","Medical Services","General medical assistance and doctor appointment support from home.","assets/medical.jpg","Doctor appointment assistance poster by GO CARE DRUG","👨‍⚕️"),
+ ("medical.html","Doctors Appointment","Doctors appointment support and general healthcare assistance from home.","assets/medical.jpg","Doctor appointment assistance poster by GO CARE DRUG","👨‍⚕️"),
  ("pathologist.html","Pathologist Services","Home sample collection support with safe and hygienic handling.","assets/pathology.jpg","Pathology home sample collection poster","🔬"),
  ("compounder.html","Compounder Services","Injections, IV drip support, wound dressing and medicine management assistance.","assets/compounder.jpg","Compounder home care poster","💉"),
  ("physiotherapy.html","Physiotherapy Services","At-home physiotherapy support for mobility, strength and recovery.","assets/physiotherapy.jpg","Physiotherapy at home poster","🦵"),
@@ -97,7 +97,7 @@ home_body = f"""<section class="hero"><div class="wrap hero-grid">
 <div class="trust-row"><span>✓ Professional Care</span><span>✓ Home Healthcare Support</span><span>✓ Convenient Services</span><span>✓ Trusted Assistance</span></div></div>
 <div class="hero-media"><img data-cms="hero_image" src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services in Patna" fetchpriority="high"><p class="media-cap">Original GO CARE DRUG care artwork · {ADDRESS}</p></div>
 </div></section>
-<section class="strip"><div class="wrap strip-grid"><div><strong>Home Medical & Healthcare Services</strong><span>One contact for nursing, medical, pathology, physiotherapy and ambulance.</span></div><div class="strip-ctas"><a class="btn btn-primary" href="contact.html">Send Enquiry</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20want%20to%20book%20a%20service." target="_blank" rel="noopener">WhatsApp Us</a></div></div></section>
+<section class="strip"><div class="wrap strip-grid"><div><strong>Home Medical & Healthcare Services</strong><span>One contact for nursing, doctors appointment, pathology, physiotherapy and ambulance.</span></div><div class="strip-ctas"><a class="btn btn-primary" href="contact.html">Send Enquiry</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20want%20to%20book%20a%20service." target="_blank" rel="noopener">WhatsApp Us</a></div></div></section>
 <section class="section"><div class="wrap"><p class="eyebrow center">OUR SERVICES</p><h2 class="center" data-cms="services_heading">Complete Healthcare Support At Your Doorstep</h2><p class="sub center" data-cms="services_sub">Tap any service to open its dedicated page.</p>{service_grid()}</div></section>
 <section class="section alt"><div class="wrap"><p class="eyebrow">WHY CHOOSE US</p><h2>Why Choose GO CARE DRUG?</h2>
 <div class="grid grid-3">
@@ -105,7 +105,7 @@ home_body = f"""<section class="hero"><div class="wrap hero-grid">
 <div class="feat reveal"><div class="f-ico">🏠</div><h3>Convenient Home Services</h3><p>Care delivered at your doorstep — no travel, no waiting rooms.</p></div>
 <div class="feat reveal"><div class="f-ico">❤️</div><h3>Patient-Centered Approach</h3><p>Support planned around the patient's comfort and family needs.</p></div>
 <div class="feat reveal"><div class="f-ico">🤝</div><h3>Reliable Assistance</h3><p>Clear communication from booking to service completion.</p></div>
-<div class="feat reveal"><div class="f-ico">👥</div><h3>Experienced Service Support</h3><p>A coordinated team for nursing, medical, pathology, physio and more.</p></div>
+<div class="feat reveal"><div class="f-ico">👥</div><h3>Experienced Service Support</h3><p>A coordinated team for nursing, doctors appointment, pathology, physio and more.</p></div>
 <div class="feat reveal"><div class="f-ico">📞</div><h3>Easy Contact & Booking</h3><p>Call or WhatsApp <a href="tel:{PHONE_TEL}">{PHONE}</a> to request any service.</p></div>
 </div>
 <div class="split"><div class="split-media"><img data-cms="home_about_image" loading="lazy" src="assets/compounder.jpg" alt="Compounder providing home care support for elderly patients"></div>
@@ -117,7 +117,7 @@ home_body = f"""<section class="hero"><div class="wrap hero-grid">
 <div class="cta-btns"><a class="btn btn-light" href="tel:{PHONE_TEL}">CALL NOW · {PHONE}</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener">WhatsApp Us</a></div></div>
 <div class="cta-media"><img loading="lazy" src="assets/ambulance.jpg" alt="GO CARE DRUG ambulance service for emergency assistance"></div></div></section>"""
 
-page("index.html","Professional Home Healthcare Services","GO CARE DRUG offers home nursing, medical, pathology, physiotherapy and ambulance support. Call "+PHONE+".",home_body)
+page("index.html","Professional Home Healthcare Services","GO CARE DRUG offers home nursing, doctors appointment, pathology, physiotherapy and ambulance support. Call "+PHONE+".",home_body)
 
 # ---------- ABOUT ----------
 about_body = """<section class="section"><div class="wrap split">
@@ -127,7 +127,7 @@ about_body = """<section class="section"><div class="wrap split">
 <ul class="ticks"><li>Home-first service model</li><li>Single point of contact for 7 services</li><li>Care-focused, family-friendly approach</li></ul></div>
 <div class="split-media"><img data-cms="about_image" src="assets/nursing-welcome.jpg" alt="GO CARE DRUG nurse welcoming patients"></div></div></section>
 <section class="section alt"><div class="wrap"><div class="grid grid-3">
-<div class="feat"><div class="f-ico">🎯</div><h3>Our Approach</h3><p>Listen first, then arrange the right support — nursing, medical, pathology, physiotherapy or ambulance — as per your requirement.</p></div>
+<div class="feat"><div class="f-ico">🎯</div><h3>Our Approach</h3><p>Listen first, then arrange the right support — nursing, doctors appointment, pathology, physiotherapy or ambulance — as per your requirement.</p></div>
 <div class="feat"><div class="f-ico">🛡️</div><h3>Our Commitment</h3><p>Safe handling, on-time visits, transparent coordination and courteous behaviour on every home visit.</p></div>
 <div class="feat"><div class="f-ico">⭐</div><h3>Why Patients Choose Us</h3><p data-cms="about_why">One trusted team, easy booking on call or WhatsApp, and support planned around the patient's daily routine.</p></div>
 </div><div class="mv-grid"><div class="feat reveal"><div class="f-ico">🎯</div><h3>Our Mission</h3><p data-cms="about_mission">To bring organised, compassionate healthcare assistance to every doorstep.</p></div><div class="feat reveal"><div class="f-ico">🔭</div><h3>Our Vision</h3><p data-cms="about_vision">A future where quality home healthcare is convenient and dependable for every family.</p></div></div><div class="split reverse"><div class="split-media"><img loading="lazy" src="assets/ambulance.jpg" alt="GO CARE DRUG ambulance for safe patient transfers"></div>
@@ -138,7 +138,7 @@ page("about.html","About Us","Learn about GO CARE DRUG — dependable home medic
 services_body = f"""<section class="section"><div class="wrap"><p class="sub">All 7 services open their own dedicated page with details and enquiry options.</p>{service_grid()}
 <div class="split" style="margin-top:44px"><div class="split-media"><img loading="lazy" src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services"></div>
 <div><h3>Not sure which service you need?</h3><p>Call us and describe your requirement — we will guide you to the right support.</p><div class="cta-btns"><a class="btn btn-primary" href="tel:{PHONE_TEL}">Call {PHONE}</a><a class="btn btn-wa" href="contact.html">Send Enquiry</a></div></div></div></div></section>"""
-page("services.html","All Services","Browse all 7 GO CARE DRUG home healthcare services: nursing, medical, pathology, compounder, physiotherapy, nurse and ambulance.",services_body,"SERVICE DIRECTORY","Everyday Healthcare, At Your Doorstep","")
+page("services.html","All Services","Browse all 7 GO CARE DRUG home healthcare services: nursing, doctors appointment, pathology, compounder, physiotherapy, nurse and ambulance.",services_body,"SERVICE DIRECTORY","Everyday Healthcare, At Your Doorstep","")
 
 def service_page(fn,title,kicker,img,alt,intro,bullets,cta_label,extra=""):
     bullets_html="".join(f"<li>{b}</li>" for b in bullets)
@@ -159,9 +159,9 @@ service_page("nursing.html","Nursing Services","NURSING CARE","assets/nursing-we
  "Supportive home nursing assistance focused on day-to-day patient comfort, routine care and responsible healthcare coordination — without overstated medical promises.",
  ["Home nursing support","Patient assistance for daily needs","Routine care support","General healthcare assistance","Care-focused, family-friendly service"],"Request Nursing Service")
 
-service_page("medical.html","Medical Services","MEDICAL SUPPORT","assets/medical.jpg","Doctor appointment support poster by GO CARE DRUG",
- "General medical assistance including help with doctor appointments and coordination of everyday medical needs. We connect you with the right support without claiming doctor credentials of our own.",
- ["Doctor appointment coordination","General medical assistance","Guidance on next steps for care","Follow-up visit coordination","Home-visit support as required"],"Enquire About Medical Services")
+service_page("medical.html","Doctors Appointment","DOCTORS APPOINTMENT","assets/medical.jpg","Doctor appointment support poster by GO CARE DRUG",
+ "Doctors appointment support and general healthcare assistance from home. We connect you with the right support without claiming doctor credentials of our own.",
+ ["Doctor appointment coordination","General medical assistance","Guidance on next steps for care","Follow-up visit coordination","Home-visit support as required"],"Enquire About Doctors Appointment")
 
 service_page("pathologist.html","Pathologist Services","PATHOLOGY SUPPORT","assets/pathology.jpg","Home blood sample collection by GO CARE DRUG pathology support",
  "Hygienic home sample-collection support for pathology and lab-related needs, handled carefully and delivered through proper lab channels — described in general terms.",
@@ -201,7 +201,7 @@ contact_body = f"""<section class="section"><div class="wrap">
 <form id="enquiryForm" class="form" novalidate>
 <label>Full Name*<input name="name" required placeholder="Your full name"></label>
 <label>Phone Number*<input name="phone" required inputmode="tel" pattern="[0-9+ ]{{7,15}}" placeholder="Your phone number"></label>
-<label>Service Required*<select name="service" required><option value="">Select a service…</option><option>Nursing Services</option><option>Medical Services</option><option>Pathologist Services</option><option>Compounder Services</option><option>Physiotherapy Services</option><option>Nurse Services</option><option>Ambulance Services</option></select></label>
+<label>Service Required*<select name="service" required><option value="">Select a service…</option><option>Nursing Services</option><option>Doctors Appointment</option><option>Pathologist Services</option><option>Compounder Services</option><option>Physiotherapy Services</option><option>Nurse Services</option><option>Ambulance Services</option></select></label>
 <label>Message<textarea name="message" rows="4" placeholder="Describe your requirement"></textarea></label>
 <p class="form-err" id="formErr" hidden>Please fill Name, a valid Phone and select a Service.</p>
 <button class="btn btn-primary" type="submit">Send Enquiry via WhatsApp</button></form></div>

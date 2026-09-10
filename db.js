@@ -123,9 +123,9 @@ function seed() {
        'Supportive home nursing assistance focused on day-to-day patient comfort, routine care and responsible healthcare coordination.',
        ['Home nursing support', 'Patient assistance for daily needs', 'Routine care support', 'General healthcare assistance', 'Care-focused, family-friendly service'],
        [], 'assets/nursing-welcome.jpg', 'nursing.html'],
-      ['medical', 'Medical Services', '👨‍⚕️', 'General medical assistance and doctor appointment support from home.',
-       "General medical assistance including help with doctor appointments and coordination of everyday medical needs.",
-       ['Doctor appointment coordination', 'General medical assistance', 'Guidance on next steps for care', 'Follow-up visit coordination', 'Home-visit support as required'],
+      ['medical', 'Doctors Appointment', '👨‍⚕️', 'Doctors appointment support and general healthcare assistance from home.',
+       "Doctors appointment support and general healthcare assistance from home.",
+       ['Doctor appointment coordination', 'General healthcare assistance', 'Guidance on next steps for care', 'Follow-up visit coordination', 'Home-visit support as required'],
        [], 'assets/medical.jpg', 'medical.html'],
       ['pathologist', 'Pathologist Services', '🔬', 'Home sample collection support with safe and hygienic handling.',
        'Hygienic home sample-collection support for pathology and lab-related needs, handled carefully and delivered through proper lab channels.',
@@ -157,12 +157,12 @@ function seed() {
   const hasPages = db.prepare('SELECT COUNT(*) c FROM pages').get().c;
   if (!hasPages) {
     const P = [
-      ['index', 'Professional Home Healthcare Services', 'GO CARE DRUG offers home nursing, medical, pathology, physiotherapy and ambulance support. Call 7759993511.'],
+      ['index', 'Professional Home Healthcare Services', 'GO CARE DRUG offers home nursing, doctors appointment, pathology, physiotherapy and ambulance support. Call 7759993511.'],
       ['about', 'About Us', 'Learn about GO CARE DRUG — dependable home medical and healthcare support built on care, health and trust.'],
-      ['services', 'All Services', 'Browse all 7 GO CARE DRUG home healthcare services: nursing, medical, pathology, compounder, physiotherapy, nurse and ambulance.'],
+      ['services', 'All Services', 'Browse all 7 GO CARE DRUG home healthcare services: nursing, doctors appointment, pathology, compounder, physiotherapy, nurse and ambulance.'],
       ['contact', 'Contact Us', 'Contact GO CARE DRUG — call or WhatsApp 7759993511, visit BHOOTHNATH SANIDEV MANDIR, or send an enquiry.'],
       ['nursing', 'Nursing Services', 'Nursing Services at home by GO CARE DRUG. Call 7759993511 or send a WhatsApp enquiry.'],
-      ['medical', 'Medical Services', 'Medical Services at home by GO CARE DRUG. Call 7759993511 or send a WhatsApp enquiry.'],
+      ['medical', 'Doctors Appointment', 'Doctors Appointment at home by GO CARE DRUG. Call 7759993511 or send a WhatsApp enquiry.'],
       ['pathologist', 'Pathologist Services', 'Pathologist Services at home by GO CARE DRUG. Call 7759993511 or send a WhatsApp enquiry.'],
       ['compounder', 'Compounder Services', 'Compounder Services at home by GO CARE DRUG. Call 7759993511 or send a WhatsApp enquiry.'],
       ['physiotherapy', 'Physiotherapy Services', 'Physiotherapy Services at home by GO CARE DRUG. Call 7759993511 or send a WhatsApp enquiry.'],
@@ -215,7 +215,7 @@ function seed() {
     const A = [
       ['logo.jpg', 'assets/logo.jpg', 'Logo', 'logo'],
       ['nursing-welcome.jpg', 'assets/nursing-welcome.jpg', 'Hero, Nursing, Nurse', 'homepage,nursing,nurse'],
-      ['medical.jpg', 'assets/medical.jpg', 'Medical Services', 'medical'],
+      ['medical.jpg', 'assets/medical.jpg', 'Doctors Appointment', 'medical'],
       ['pathology.jpg', 'assets/pathology.jpg', 'Pathologist Services', 'pathologist'],
       ['compounder.jpg', 'assets/compounder.jpg', 'Compounder Services', 'compounder'],
       ['physiotherapy.jpg', 'assets/physiotherapy.jpg', 'Physiotherapy Services', 'physiotherapy'],
