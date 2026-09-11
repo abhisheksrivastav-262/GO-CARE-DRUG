@@ -67,19 +67,21 @@ def page(filename,title,desc,body,hero_kicker="",hero_title="",hero_sub=""):
 <meta property="og:title" content="{title} | GO CARE DRUG"><meta property="og:description" content="{desc}"><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/nursing-welcome.jpg"></head>
+<link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/logo.jpg"></head>
 <body>{header(filename)}<main>{hero}{body}</main>{footer()}<script src="script.js"></script><script src="/cms.js" defer></script></body></html>"""
     open(os.path.join(BASE,filename),"w").write(html)
 
 SERVICE_CARDS = [
- ("nursing.html","Nursing Services","Home nursing support, patient assistance and routine care at home.","assets/nursing-welcome.jpg","Nurse welcoming patients to GO CARE DRUG home healthcare","🩺"),
+ ("nursing.html","Nursing Services","Home nursing support, patient assistance and routine care at home.","assets/nursing-care.jpg","Our nursing care at home by GO CARE DRUG","🩺"),
  ("medical.html","Doctors Appointment","Doctors appointment support and general healthcare assistance from home.","assets/medical.jpg","Doctor appointment assistance poster by GO CARE DRUG","👨‍⚕️"),
- ("pathologist.html","Pathologist Services","Home sample collection support with safe and hygienic handling.","assets/pathology.jpg","Pathology home sample collection poster","🔬"),
- ("compounder.html","Compounder Services","Injections, IV drip support, wound dressing and medicine management assistance.","assets/compounder.jpg","Compounder home care poster","💉"),
- ("physiotherapy.html","Physiotherapy Services","At-home physiotherapy support for mobility, strength and recovery.","assets/physiotherapy.jpg","Physiotherapy at home poster","🦵"),
- ("nurse.html","Nurse Services","Dedicated nurse support for elderly care and day-to-day patient needs.","assets/nursing-welcome.jpg","Nurse in blue uniform holding clipboard","🤝"),
- ("ambulance.html","Ambulance Services","Emergency assistance and patient transfer support with quick contact.","assets/ambulance.jpg","Ambulance service vehicle poster","🚑"),
+ ("pathologist.html","Pathologist Services","Home sample collection support with safe and hygienic handling.","assets/pathology-diagnostics.jpg","Pathology diagnostics lab by GO CARE DRUG","🔬"),
+ ("compounder.html","Compounder Services","Injections, IV drip support, wound dressing and medicine management assistance.","assets/pharmacy-compounding.jpg","Pharmacy compounding by GO CARE DRUG","💉"),
+ ("physiotherapy.html","Physiotherapy Services","At-home physiotherapy support for mobility, strength and recovery.","assets/physiotherapy-home.jpg","Our physiotherapy at home by GO CARE DRUG","🦵"),
+ ("nurse.html","Nurse Services","Dedicated nurse support for elderly care and day-to-day patient needs.","assets/caretaker-services.jpg","Specialized caretaker services by GO CARE DRUG","🤝"),
+ ("ambulance.html","Ambulance Services","Emergency assistance and patient transfer support with quick contact.","assets/ambulance-247.jpg","24/7 ambulance service by GO CARE DRUG","🚑"),
 ]
+
+GALLERY_HTML = """<section class="section"><div class="wrap"><p class="eyebrow center">OUR WORK IN PATNA</p><h2 class="center">Real Care, Real Photos</h2><p class="sub center">Nursing, caretaker, physiotherapy, pathology and ambulance — at your doorstep.</p><div class="gallery-grid"><figure><img loading="lazy" src="assets/home-healthcare-solutions.jpg" alt="Home healthcare solutions in Patna by GO CARE DRUG"><figcaption>Home Healthcare Solutions<span>Nursing · Caretaker · Physio · Ambulance</span></figcaption></figure><figure><img loading="lazy" src="assets/expert-care-doorstep.jpg" alt="Expert care at your doorstep in Patna by GO CARE DRUG"><figcaption>Expert Care At Your Doorstep<span>Sample collection · Nursing · Physio</span></figcaption></figure><figure><img loading="lazy" src="assets/services-overview.jpg" alt="GO CARE DRUG services overview Patna"><figcaption>All Services Overview<span>Nursing · Medical · Physio · Ambulance</span></figcaption></figure><figure><img loading="lazy" src="assets/nursing-care.jpg" alt="Our nursing care at home by GO CARE DRUG"><figcaption>Our Nursing Care<span>Wound care · IV · Vitals</span></figcaption></figure><figure><img loading="lazy" src="assets/caretaker-services.jpg" alt="Specialized caretaker services by GO CARE DRUG"><figcaption>Caretaker Services<span>Elder care · Hygiene · Meals</span></figcaption></figure><figure><img loading="lazy" src="assets/physiotherapy-home.jpg" alt="Our physiotherapy at home by GO CARE DRUG"><figcaption>Physiotherapy At Home<span>Exercise · Pain management</span></figcaption></figure></div><h3 class="center" style="margin-top:36px">Our Service Posters</h3><div class="gallery-grid"><figure><img loading="lazy" src="assets/medical.jpg" alt="Doctor appointment assistance poster by GO CARE DRUG"><figcaption>Doctors Appointment<span>Medical support</span></figcaption></figure><figure><img loading="lazy" src="assets/pathology.jpg" alt="Pathology home sample collection poster"><figcaption>Pathology Poster<span>Sample collection</span></figcaption></figure><figure><img loading="lazy" src="assets/pathology-diagnostics.jpg" alt="Pathology diagnostics lab by GO CARE DRUG"><figcaption>Pathology Diagnostics<span>Lab · Reports</span></figcaption></figure><figure><img loading="lazy" src="assets/compounder.jpg" alt="Compounder home care poster"><figcaption>Compounder Poster<span>Home care</span></figcaption></figure><figure><img loading="lazy" src="assets/pharmacy-compounding.jpg" alt="Pharmacy compounding by GO CARE DRUG"><figcaption>Pharmacy Compounding<span>Medication · Quality</span></figcaption></figure><figure><img loading="lazy" src="assets/physiotherapy.jpg" alt="Physiotherapy at home poster"><figcaption>Physiotherapy Poster<span>Mobility · Recovery</span></figcaption></figure><figure><img loading="lazy" src="assets/ambulance.jpg" alt="Ambulance service vehicle poster"><figcaption>Ambulance Poster<span>Emergency</span></figcaption></figure><figure><img loading="lazy" src="assets/ambulance-247.jpg" alt="GO CARE DRUG 24/7 ambulance service in Patna"><figcaption>24/7 Ambulance<span>Emergency transport</span></figcaption></figure></div></div></section>"""
 
 def service_grid():
     cards=[]
@@ -95,10 +97,11 @@ home_body = f"""<section class="hero"><div class="wrap hero-grid">
 <p class="lead" data-cms="hero_sub">GO CARE DRUG provides dependable home medical and healthcare support designed around comfort, convenience and professional care.</p>
 <div class="hero-ctas"><a class="btn btn-primary" data-cms="hero_primary_text" data-cms-link="hero_primary_link" href="services.html">Book a Service</a><a class="btn btn-dark" data-cms="hero_secondary_text" href="tel:{PHONE_TEL}">Call {PHONE}</a></div>
 <div class="trust-row"><span>✓ Professional Care</span><span>✓ Home Healthcare Support</span><span>✓ Convenient Services</span><span>✓ Trusted Assistance</span></div></div>
-<div class="hero-media"><img data-cms="hero_image" src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services in Patna" fetchpriority="high"><p class="media-cap">Original GO CARE DRUG care artwork · {ADDRESS}</p></div>
+<div class="hero-media"><img data-cms="hero_image" src="assets/home-healthcare-solutions.jpg" alt="Home healthcare solutions in Patna by GO CARE DRUG" fetchpriority="high"><p class="media-cap">Home healthcare in Patna · {ADDRESS}</p></div>
 </div></section>
 <section class="strip"><div class="wrap strip-grid"><div><strong>Home Medical & Healthcare Services</strong><span>One contact for nursing, doctors appointment, pathology, physiotherapy and ambulance.</span></div><div class="strip-ctas"><a class="btn btn-primary" href="contact.html">Send Enquiry</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20want%20to%20book%20a%20service." target="_blank" rel="noopener">WhatsApp Us</a></div></div></section>
 <section class="section"><div class="wrap"><p class="eyebrow center">OUR SERVICES</p><h2 class="center" data-cms="services_heading">Complete Healthcare Support At Your Doorstep</h2><p class="sub center" data-cms="services_sub">Tap any service to open its dedicated page.</p>{service_grid()}</div></section>
+{GALLERY_HTML}
 <section class="section alt"><div class="wrap"><p class="eyebrow">WHY CHOOSE US</p><h2>Why Choose GO CARE DRUG?</h2>
 <div class="grid grid-3">
 <div class="feat reveal"><div class="f-ico">🏥</div><h3>Professional Healthcare Support</h3><p>Organised, care-focused assistance for everyday medical needs at home.</p></div>
@@ -108,14 +111,14 @@ home_body = f"""<section class="hero"><div class="wrap hero-grid">
 <div class="feat reveal"><div class="f-ico">👥</div><h3>Experienced Service Support</h3><p>A coordinated team for nursing, doctors appointment, pathology, physio and more.</p></div>
 <div class="feat reveal"><div class="f-ico">📞</div><h3>Easy Contact & Booking</h3><p>Call or WhatsApp <a href="tel:{PHONE_TEL}">{PHONE}</a> to request any service.</p></div>
 </div>
-<div class="split"><div class="split-media"><img data-cms="home_about_image" loading="lazy" src="assets/compounder.jpg" alt="Compounder providing home care support for elderly patients"></div>
+<div class="split"><div class="split-media"><img data-cms="home_about_image" loading="lazy" src="assets/expert-care-doorstep.jpg" alt="Expert care at your doorstep in Patna by GO CARE DRUG"></div>
 <div><h3 data-cms="home_about_heading">One trusted team for your family's everyday care</h3><p data-cms="home_about_text">From sample collection to attendant support, every request is handled with hygiene, punctuality and compassion.</p><ul class="ticks"><li>Home sample collection assistance</li><li>Nursing, caretaker & compounder support</li><li>Physiotherapy at home</li><li>Ambulance service coordination</li></ul><a class="btn btn-primary" href="about.html">More About Us</a></div></div>
 </div></section>
 <section class="section"><div class="wrap"><p class="eyebrow center">PROCESS</p><h2 class="center">How Our Healthcare Service Works</h2>
 <div class="steps"><div class="step reveal"><span>01</span><h3>Contact Us</h3><p>Call or WhatsApp {PHONE}.</p></div><div class="step reveal"><span>02</span><h3>Tell Us Your Requirement</h3><p>Share the service and patient needs.</p></div><div class="step reveal"><span>03</span><h3>Get Service Assistance</h3><p>We confirm and schedule your visit.</p></div><div class="step reveal"><span>04</span><h3>Receive Professional Support</h3><p>Care delivered at your home.</p></div></div></div></section>
 <section class="cta-band"><div class="wrap cta-grid"><div><h2>Need Healthcare Assistance?</h2><p>Get in touch with GO CARE DRUG for reliable healthcare support.</p>
 <div class="cta-btns"><a class="btn btn-light" href="tel:{PHONE_TEL}">CALL NOW · {PHONE}</a><a class="btn btn-wa" href="https://wa.me/{PHONE_WA}?text=Hello%20GO%20CARE%20DRUG%2C%20I%20need%20healthcare%20assistance." target="_blank" rel="noopener">WhatsApp Us</a></div></div>
-<div class="cta-media"><img loading="lazy" src="assets/ambulance.jpg" alt="GO CARE DRUG ambulance service for emergency assistance"></div></div></section>"""
+<div class="cta-media"><img loading="lazy" src="assets/ambulance-247.jpg" alt="GO CARE DRUG 24/7 ambulance service in Patna"></div></div></section>"""
 
 page("index.html","Professional Home Healthcare Services","GO CARE DRUG offers home nursing, doctors appointment, pathology, physiotherapy and ambulance support. Call "+PHONE+".",home_body)
 
@@ -125,18 +128,18 @@ about_body = """<section class="section"><div class="wrap split">
 <p data-cms="about_intro">GO CARE DRUG is a home medical and healthcare service provider focused on delivering convenient and dependable medical support to patients and families.</p>
 <p>Our work is simple: bring organised healthcare assistance to your doorstep — with clear communication, respectful care and attention to hygiene and comfort.</p>
 <ul class="ticks"><li>Home-first service model</li><li>Single point of contact for 7 services</li><li>Care-focused, family-friendly approach</li></ul></div>
-<div class="split-media"><img data-cms="about_image" src="assets/nursing-welcome.jpg" alt="GO CARE DRUG nurse welcoming patients"></div></div></section>
+<div class="split-media"><img data-cms="about_image" src="assets/nursing-care.jpg" alt="Our nursing care at home by GO CARE DRUG"></div></div></section>
 <section class="section alt"><div class="wrap"><div class="grid grid-3">
 <div class="feat"><div class="f-ico">🎯</div><h3>Our Approach</h3><p>Listen first, then arrange the right support — nursing, doctors appointment, pathology, physiotherapy or ambulance — as per your requirement.</p></div>
 <div class="feat"><div class="f-ico">🛡️</div><h3>Our Commitment</h3><p>Safe handling, on-time visits, transparent coordination and courteous behaviour on every home visit.</p></div>
 <div class="feat"><div class="f-ico">⭐</div><h3>Why Patients Choose Us</h3><p data-cms="about_why">One trusted team, easy booking on call or WhatsApp, and support planned around the patient's daily routine.</p></div>
-</div><div class="mv-grid"><div class="feat reveal"><div class="f-ico">🎯</div><h3>Our Mission</h3><p data-cms="about_mission">To bring organised, compassionate healthcare assistance to every doorstep.</p></div><div class="feat reveal"><div class="f-ico">🔭</div><h3>Our Vision</h3><p data-cms="about_vision">A future where quality home healthcare is convenient and dependable for every family.</p></div></div><div class="split reverse"><div class="split-media"><img loading="lazy" src="assets/ambulance.jpg" alt="GO CARE DRUG ambulance for safe patient transfers"></div>
+</div><div class="mv-grid"><div class="feat reveal"><div class="f-ico">🎯</div><h3>Our Mission</h3><p data-cms="about_mission">To bring organised, compassionate healthcare assistance to every doorstep.</p></div><div class="feat reveal"><div class="f-ico">🔭</div><h3>Our Vision</h3><p data-cms="about_vision">A future where quality home healthcare is convenient and dependable for every family.</p></div></div><div class="split reverse"><div class="split-media"><img loading="lazy" src="assets/services-overview.jpg" alt="GO CARE DRUG all services overview Patna"></div>
 <div><h3>Everything your family needs, at home</h3><p>Our service directory covers nursing care, caretaker support, sample collection, physiotherapy, and ambulance coordination.</p><a class="btn btn-primary" href="services.html">Explore Services</a></div></div></div></section>"""
 page("about.html","About Us","Learn about GO CARE DRUG — dependable home medical and healthcare support built on care, health and trust.",about_body,"ABOUT GO CARE DRUG","Care, Health & Trust","A healthcare service provider focused on convenient, dependable medical support at home.")
 
 # ---------- SERVICES ----------
-services_body = f"""<section class="section"><div class="wrap"><p class="sub">All 7 services open their own dedicated page with details and enquiry options.</p>{service_grid()}
-<div class="split" style="margin-top:44px"><div class="split-media"><img loading="lazy" src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services"></div>
+services_body = f"""<section class="section"><div class="wrap"><p class="sub">All 7 services open their own dedicated page with details and enquiry options.</p>{service_grid()}</div></section>{GALLERY_HTML}<section class="section"><div class="wrap">
+<div class="split" style="margin-top:0"><div class="split-media"><img loading="lazy" src="assets/expert-care-doorstep.jpg" alt="Expert care at your doorstep in Patna by GO CARE DRUG"></div>
 <div><h3>Not sure which service you need?</h3><p>Call us and describe your requirement — we will guide you to the right support.</p><div class="cta-btns"><a class="btn btn-primary" href="tel:{PHONE_TEL}">Call {PHONE}</a><a class="btn btn-wa" href="contact.html">Send Enquiry</a></div></div></div></div></section>"""
 page("services.html","All Services","Browse all 7 GO CARE DRUG home healthcare services: nursing, doctors appointment, pathology, compounder, physiotherapy, nurse and ambulance.",services_body,"SERVICE DIRECTORY","Everyday Healthcare, At Your Doorstep","")
 
@@ -155,7 +158,7 @@ def service_page(fn,title,kicker,img,alt,intro,bullets,cta_label,extra=""):
 <div class="step"><span>04</span><h3>Receive care</h3><p>Service delivered at your home.</p></div></div>{extra}</div></section>"""
     page(fn,title,f"{title} at home by GO CARE DRUG. Call {PHONE} or send a WhatsApp enquiry.",body,kicker,title,"")
 
-service_page("nursing.html","Nursing Services","NURSING CARE","assets/nursing-welcome.jpg","Nurse welcoming patients to GO CARE DRUG home nursing care",
+service_page("nursing.html","Nursing Services","NURSING CARE","assets/nursing-care.jpg","Our nursing care at home by GO CARE DRUG",
  "Supportive home nursing assistance focused on day-to-day patient comfort, routine care and responsible healthcare coordination — without overstated medical promises.",
  ["Home nursing support","Patient assistance for daily needs","Routine care support","General healthcare assistance","Care-focused, family-friendly service"],"Request Nursing Service")
 
@@ -163,25 +166,25 @@ service_page("medical.html","Doctors Appointment","DOCTORS APPOINTMENT","assets/
  "Doctors appointment support and general healthcare assistance from home. We connect you with the right support without claiming doctor credentials of our own.",
  ["Doctor appointment coordination","General medical assistance","Guidance on next steps for care","Follow-up visit coordination","Home-visit support as required"],"Enquire About Doctors Appointment")
 
-service_page("pathologist.html","Pathologist Services","PATHOLOGY SUPPORT","assets/pathology.jpg","Home blood sample collection by GO CARE DRUG pathology support",
+service_page("pathologist.html","Pathologist Services","PATHOLOGY SUPPORT","assets/pathology-diagnostics.jpg","Pathology diagnostics lab by GO CARE DRUG",
  "Hygienic home sample-collection support for pathology and lab-related needs, handled carefully and delivered through proper lab channels — described in general terms.",
  ["Home sample collection assistance","Safe & hygienic collection process","Careful sample handling","Report delivery coordination","Affordable, transparent process"],"Enquire Now",
  extra='<div class="notice">Note: specific tests and reports are confirmed on call as per your prescription or requirement.</div>')
 
-service_page("compounder.html","Compounder Services","COMPOUNDER SUPPORT","assets/compounder.jpg","Compounder providing wound dressing support at home",
+service_page("compounder.html","Compounder Services","COMPOUNDER SUPPORT","assets/pharmacy-compounding.jpg","Pharmacy compounding by GO CARE DRUG",
  "Responsible compounder assistance for routine medical support at home — such as dressing support, basic monitoring and medicine scheduling — strictly as per your doctor's advice.",
  ["Injection support as per doctor's advice","IV drip & cannulation assistance","Wound dressing support","Medicine management reminders","Basic vitals & patient-care assistance"],"Contact GO CARE DRUG",
  extra='<div class="notice">We do not claim prescription authority. All medication-related support follows your doctor\u2019s prescription.</div>')
 
-service_page("physiotherapy.html","Physiotherapy Services","PHYSIOTHERAPY","assets/physiotherapy.jpg","Physiotherapist supporting knee mobilisation at home",
+service_page("physiotherapy.html","Physiotherapy Services","PHYSIOTHERAPY","assets/physiotherapy-home.jpg","Our physiotherapy at home by GO CARE DRUG",
  "At-home physiotherapy support for pain relief, mobility, strength and post-surgery rehabilitation routines — planned around your condition and comfort, without exaggerated recovery claims.",
  ["Expert physiotherapy at home","Personalised session planning","Pain-relief & mobility exercises","Post-surgery & elderly support","Flexible hourly / daily / weekly sessions"],"Enquire For Physiotherapy")
 
-service_page("nurse.html","Nurse Services","NURSE SUPPORT","assets/nursing-welcome.jpg","Dedicated nurse support for home patient care",
+service_page("nurse.html","Nurse Services","NURSE SUPPORT","assets/caretaker-services.jpg","Specialized caretaker services by GO CARE DRUG",
  "Dedicated nurse support for families who need an extra pair of trained hands — elderly care, bedside assistance and day-to-day patient comfort.",
  ["Dedicated nurse for home visits","Elderly & bedridden patient support","Daily routine & hygiene assistance","Companionship with professional conduct","Coordination with family members"],"Request Nurse Service")
 
-service_page("ambulance.html","Ambulance Services","EMERGENCY SUPPORT","assets/ambulance.jpg","GO CARE DRUG ambulance vehicle for patient transfer",
+service_page("ambulance.html","Ambulance Services","EMERGENCY SUPPORT","assets/ambulance-247.jpg","GO CARE DRUG 24/7 ambulance service in Patna",
  "Quick-contact ambulance coordination for emergency assistance and safe patient transfers — local and long-distance — with trained support and essential equipment.",
  ["Emergency assistance coordination","Rapid response on call","Trained medical support staff","Stretcher, oxygen & life-support equipment","Local & long-distance transfers"],
  "Call Ambulance — "+PHONE,
@@ -205,7 +208,7 @@ contact_body = f"""<section class="section"><div class="wrap">
 <label>Message<textarea name="message" rows="4" placeholder="Describe your requirement"></textarea></label>
 <p class="form-err" id="formErr" hidden>Please fill Name, a valid Phone and select a Service.</p>
 <button class="btn btn-primary" type="submit">Send Enquiry via WhatsApp</button></form></div>
-<div class="split-media"><img loading="lazy" src="assets/nursing-welcome.jpg" alt="Welcome to GO CARE DRUG home healthcare services"><p class="media-cap">{ADDRESS} · Call / WhatsApp {PHONE}</p></div></div>
+<div class="split-media"><img loading="lazy" src="assets/expert-care-doorstep.jpg" alt="Expert care at your doorstep in Patna by GO CARE DRUG"><p class="media-cap">{ADDRESS} · Call / WhatsApp {PHONE}</p></div></div>
 </div></section>"""
 page("contact.html","Contact Us","Contact GO CARE DRUG — call or WhatsApp "+PHONE+", visit "+ADDRESS+", or send an enquiry.",contact_body,"GET IN TOUCH","Contact GO CARE DRUG","Call, WhatsApp or visit us — we respond quickly.")
 print("pages built OK")
@@ -215,7 +218,7 @@ detail_shell = f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><m
 <meta property="og:title" content="Service Details | GO CARE DRUG"><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/nursing-welcome.jpg"></head>
+<link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/logo.jpg"></head>
 <body>{header('services.html')}<main><section class="page-hero"><div class="wrap"><p class="eyebrow">GO CARE DRUG SERVICES</p><h1>Service Details</h1><p class="lead">Professional home healthcare support, delivered with care.</p></div></section><div class="wrap" style="padding:10px 20px 30px" id="detailBox"><p>Loading service details…</p></div></main>{footer()}<script src="script.js"></script><script src="/cms.js" defer></script></body></html>"""
 open(os.path.join(BASE,"service-detail.html"),"w").write(detail_shell)
 print("service-detail.html written")
