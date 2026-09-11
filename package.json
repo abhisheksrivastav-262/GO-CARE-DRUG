@@ -17,6 +17,6 @@
     "puppeteer-core": "^25.10.0"
   },
   "engines": {
-    "node": ">=22"
+    "node": "22.x"
   }
 }

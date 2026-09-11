@@ -32,14 +32,14 @@ app.use(session({
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 
 // ---- never expose server internals ----
-const BLOCKED = [/^\/server\.js/, /^\/db\.js/, /^\/session-store\.js/, /^\/build_site\.py/, /\.py$/, /^\/package.*\.json/, /^\/node_modules\//, /^\/data\//, /^\/\.git\//, /\.db(\b|$)/];
+const BLOCKED = [/^\/server\.js/, /^\/db\.js/, /^\/session-store\.js/, /^\/build_site\.py/, /^\/api\/index\.js$/, /\.py$/, /^\/package.*\.json/, /^\/node_modules\//, /^\/data\//, /^\/\.git\//, /\.db(\b|$)/];
 app.use((req, res, next) => {
   if (BLOCKED.some(rx => rx.test(req.path))) return res.status(404).send('Not found');
   next();
 });
 
-// ---- uploads (persistent disk path configurable via UPLOAD_DIR) ----
-const UP_DIR = process.env.UPLOAD_DIR || path.join(__dirname, 'uploads');
+// ---- uploads (persistent disk path configurable via UPLOAD_DIR; /tmp on Vercel) ----
+const UP_DIR = process.env.UPLOAD_DIR || (process.env.VERCEL ? path.join('/tmp', 'gocare-uploads') : path.join(__dirname, 'uploads'));
 // Absolute disk path for a media filepath (respects UPLOAD_DIR override).
 function absMediaPath(fp) {
   if (!fp.startsWith('uploads/')) return null;
@@ -492,4 +492,9 @@ app.use((err, req, res, next) => {
 });
 
 seed();
-app.listen(PORT, () => console.log(`GO CARE DRUG site + CMS running at http://localhost:${PORT}  (admin: /admin/)`));
+module.exports = app;
+// Only open a port when run directly (node server.js). On Vercel the
+// exported app is invoked per-request by api/index.js (serverless).
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`GO CARE DRUG site + CMS running at http://localhost:${PORT}  (admin: /admin/)`));
+}
